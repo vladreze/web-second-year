@@ -274,6 +274,12 @@ input[name="search-information"] {
     border: 3px solid var(--color-primary-hover);
 }
 
+.teacher-card__avatar--initials:hover{
+    color: var(--color-primary-hover);
+}
+
+
+
 
 .teacher-card__avatar {
   width: 100%;
