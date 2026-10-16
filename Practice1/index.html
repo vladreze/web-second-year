@@ -11,8 +11,7 @@
     />
 
     <link rel="stylesheet" href="style.css" />
-    <script type="module" src="renderTeachers.js"></script>
-    <script type="module" src="modalWindowTeacher.js""></script>
+    <script type="module" src="app.js"></script>
     <title>Teachinder</title>
   </head>
   <body>
@@ -60,19 +59,37 @@
             <div class="top-teachers-form-container">
               <label for="age" class="form-label">Age</label>
               <select id="age" name="age" class="select">
-                <option value="18-31" selected>18-31</option>
-                <option value="32-50">32-50</option>
+                <option value="all" selected>All</option>
+                <option value="18-30">18-30</option>
+                <option value="31-45">31-45</option>
+                <option value="46-60">46-60</option>
+                <option value="61+">61+</option>
               </select>
 
-              <label for="region" class="form-label">Region</label>
-              <select id="region" name="region" class="select">
-                <option value="europe">Europe</option>
-                <option value="asia">Asia</option>
-                <option value="america">America</option>
+              <label for="country" class="form-label">Country</label>
+              <select id="country" name="country" class="select">
+                <option value="all" selected>All countries</option>
+                <option value="Australia">Australia</option>
+                <option value="Canada">Canada</option>
+                <option value="Denmark">Denmark</option>
+                <option value="Finland">Finland</option>
+                <option value="France">France</option>
+                <option value="Germany">Germany</option>
+                <option value="Iran">Iran</option>
+                <option value="Ireland">Ireland</option>
+                <option value="Netherlands">Netherlands</option>
+                <option value="New Zealand">New Zealand</option>
+                <option value="Norway">Norway</option>
+                <option value="Spain">Spain</option>
+                <option value="Switzerland">Switzerland</option>
+                <option value="Turkey">Turkey</option>
+                <option value="United States">United States</option>
+                <option value="Ukraine">Ukraine</option>
               </select>
 
               <label for="sex" class="form-label">Sex</label>
               <select id="sex" name="sex" class="select">
+                <option value="all" selected>All genders</option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
               </select>
@@ -85,123 +102,7 @@
             </div>
           </form>
 
-          <div class="teachers-profiles-container">
-            <article class="teacher-card">
-              <div class="teacher-card__avatar-wrapper">
-                <img
-                  src="img/manThree.jpg"
-                  alt="Ihor Tkachuk"
-                  class="teacher-card__avatar"
-                  width="120"
-                  height="120"
-                />
-              </div>
-              <h3 class="teacher-card__name">Ihor<br />Tkachuk</h3>
-              <p class="teacher-card__subject">Chemistry</p>
-              <span class="teacher-card__country">Ukraine</span>
-            </article>
-
-            <article class="teacher-card">
-              <div class="teacher-card__avatar-wrapper">
-                <img
-                  src="img/manTwo.jpg"
-                  alt="Pragg Rameshbabu"
-                  class="teacher-card__avatar"
-                  width="120"
-                  height="120"
-                />
-              </div>
-              <h3 class="teacher-card__name">Pragg<br />Rameshbabu</h3>
-              <p class="teacher-card__subject">Chess</p>
-              <span class="teacher-card__country">India</span>
-            </article>
-
-            <article class="teacher-card teacher-card--favorite">
-              <div class="teacher-card__avatar-wrapper">
-                <img
-                  src="img/femaleSix.jpg"
-                  alt="Floor Jansen"
-                  class="teacher-card__avatar"
-                  width="120"
-                  height="120"
-                />
-              </div>
-              <h3 class="teacher-card__name">Floor<br />Jansen</h3>
-              <p class="teacher-card__subject">Vocal</p>
-              <span class="teacher-card__country">Denmark</span>
-            </article>
-
-            <article class="teacher-card">
-              <div class="teacher-card__avatar-wrapper">
-                <img
-                  src="img/manOne.jpg"
-                  alt="John Burke"
-                  class="teacher-card__avatar"
-                  width="120"
-                  height="120"
-                />
-              </div>
-              <h3 class="teacher-card__name">John<br />Burke</h3>
-              <p class="teacher-card__subject">Computer Science</p>
-              <span class="teacher-card__country">Belgium</span>
-            </article>
-
-            <article class="teacher-card teacher-card--favorite">
-              <div class="teacher-card__avatar-wrapper">
-                <img
-                  src="img/femaleFour.jpg"
-                  alt="Ari Tang"
-                  class="teacher-card__avatar"
-                  width="120"
-                  height="120"
-                />
-              </div>
-              <h3 class="teacher-card__name">Ari<br />Tang</h3>
-              <p class="teacher-card__subject">Biology</p>
-              <span class="teacher-card__country">China</span>
-            </article>
-
-            <article class="teacher-card">
-              <div class="teacher-card__avatar-wrapper">
-                <img
-                  src="img/femaleFive.jpg"
-                  alt="Rachel Andrew"
-                  class="teacher-card__avatar"
-                  width="120"
-                  height="120"
-                />
-              </div>
-              <h3 class="teacher-card__name">Rachel<br />Andrew</h3>
-              <p class="teacher-card__subject">Medicine</p>
-              <span class="teacher-card__country">UK</span>
-            </article>
-
-            <article class="teacher-card">
-              <div class="teacher-card__avatar-wrapper">
-                <div
-                  class="teacher-card__avatar teacher-card__avatar--initials"
-                >
-                  A.M
-                </div>
-              </div>
-              <h3 class="teacher-card__name">Anna<br />Muzychuk</h3>
-              <p class="teacher-card__subject">Chess</p>
-              <span class="teacher-card__country">Belarus</span>
-            </article>
-
-            <article class="teacher-card">
-              <div class="teacher-card__avatar-wrapper">
-                <div
-                  class="teacher-card__avatar teacher-card__avatar--initials"
-                >
-                  R.L
-                </div>
-              </div>
-              <h3 class="teacher-card__name">Radoslaw<br />Ljuboevic</h3>
-              <p class="teacher-card__subject">Physics</p>
-              <span class="teacher-card__country">Poland</span>
-            </article>
-          </div>
+          <div class="teachers-profiles-container"></div>
         </div>
       </section>
       <section class="statistics-section" id="statistics">
@@ -211,11 +112,11 @@
           <table class="data-table">
             <thead>
               <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Speciality</th>
-                <th scope="col">Age</th>
-                <th scope="col">Gender</th>
-                <th scope="col">Nationality</th>
+                <th scope="col" data-sort="full_name">Name</th>
+                <th scope="col" data-sort="course">Speciality</th>
+                <th scope="col" data-sort="age">Age</th>
+                <th scope="col" data-sort="gender">Gender</th>
+                <th scope="col" data-sort="country">Nationality</th>
               </tr>
             </thead>
             <tbody>
@@ -293,95 +194,19 @@
           </table>
         </div>
 
-        <div class="page-selection-container">
+        <!--      <div class="page-selection-container">
           <span class="page-selection-item">1</span>
           <a href="#" class="page-selection-item">2</a>
           <a href="#" class="page-selection-item">3</a>
           <span class="page-selection-item">...</span>
           <a href="#" class="page-selection-item">Last</a>
-        </div>
+        </div>-->
       </section>
 
       <section class="favorites-section" id="favorites">
         <h2 class="section-title">Favorites</h2>
         <div class="favorites-teachers-container">
-          <button type="button" class="carousel-btn carousel-btn--prev">
-            &lsaquo;
-          </button>
-
-          <div class="favorites-container">
-            <article class="teacher-card">
-              <div class="teacher-card__avatar-wrapper">
-                <img
-                  src="img/manThree.jpg"
-                  alt="Ihor Tkachuk"
-                  class="teacher-card__avatar"
-                  width="120"
-                  height="120"
-                />
-              </div>
-              <h3 class="teacher-card__name">Ihor<br />Tkachuk</h3>
-              <span class="teacher-card__country">Ukraine</span>
-            </article>
-
-            <article class="teacher-card">
-              <div class="teacher-card__avatar-wrapper">
-                <div
-                  class="teacher-card__avatar teacher-card__avatar--initials"
-                >
-                  A.M
-                </div>
-              </div>
-              <h3 class="teacher-card__name">Anna<br />Makarevich</h3>
-              <span class="teacher-card__country">Belarus</span>
-            </article>
-
-            <article class="teacher-card">
-              <div class="teacher-card__avatar-wrapper">
-                <img
-                  src="img/manOne.jpg"
-                  alt="John Burke"
-                  class="teacher-card__avatar"
-                  width="120"
-                  height="120"
-                />
-              </div>
-              <h3 class="teacher-card__name">John<br />Burke</h3>
-              <span class="teacher-card__country">Belgium</span>
-            </article>
-
-            <article class="teacher-card">
-              <div class="teacher-card__avatar-wrapper">
-                <img
-                  src="img/femaleFour.jpg"
-                  alt="Ari Tang"
-                  class="teacher-card__avatar"
-                  width="120"
-                  height="120"
-                />
-              </div>
-              <h3 class="teacher-card__name">Ari<br />Tang</h3>
-              <span class="teacher-card__country">China</span>
-            </article>
-
-            <article class="teacher-card">
-              <div class="teacher-card__avatar-wrapper">
-                <img
-                  src="img/femaleSix.jpg"
-                  alt="Floor Jansen"
-                  class="teacher-card__avatar"
-                  width="120"
-                  height="120"
-                />
-              </div>
-              <h3 class="teacher-card__name">Floor<br />Jansen</h3>
-              <span class="teacher-card__country">Denmark</span>
-            </article>
-          </div>
-
-          <button type="button" class="carousel-btn carousel-btn--next">
-            &rsaquo;
-          </button>
+          <div class="favorites-container"></div>
         </div>
       </section>
     </main>
@@ -450,11 +275,18 @@
           <div class="form-group">
             <label for="speciality">Speciality</label>
             <select name="speciality" id="speciality">
-              <option value="math" selected>Mathematics</option>
-              <option value="chemistry">Chemistry</option>
+              <option value="mathematics" selected>Mathematics</option>
               <option value="physics">Physics</option>
-              <option value="biology">Biology</option>
+              <option value="english">English</option>
               <option value="computer-science">Computer Science</option>
+              <option value="dancing">Dancing</option>
+              <option value="chess">Chess</option>
+              <option value="biology">Biology</option>
+              <option value="chemistry">Chemistry</option>
+              <option value="law">Law</option>
+              <option value="art">Art</option>
+              <option value="medicine">Medicine</option>
+              <option value="statistics">Statistics</option>
             </select>
           </div>
 
@@ -463,8 +295,21 @@
               <label for="teacher-country">Country</label>
               <select id="teacher-country" name="country">
                 <option value="ukraine" selected>Ukraine</option>
-                <option value="poland">Poland</option>
+                <option value="australia">Australia</option>
+                <option value="canada">Canada</option>
+                <option value="denmark">Denmark</option>
+                <option value="finland">Finland</option>
+                <option value="france">France</option>
                 <option value="germany">Germany</option>
+                <option value="iran">Iran</option>
+                <option value="ireland">Ireland</option>
+                <option value="netherlands">Netherlands</option>
+                <option value="new-zealand">New Zealand</option>
+                <option value="norway">Norway</option>
+                <option value="poland">Poland</option>
+                <option value="spain">Spain</option>
+                <option value="switzerland">Switzerland</option>
+                <option value="turkey">Turkey</option>
                 <option value="usa">USA</option>
               </select>
             </div>

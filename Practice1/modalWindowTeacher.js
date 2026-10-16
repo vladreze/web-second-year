@@ -1,8 +1,5 @@
-import { formatUsers } from "./JS-User-methods/FE4U-Lab2-mock.js";
-
-const users = formatUsers();
-
 const teachersProfile = document.querySelector(".teachers-profiles-container");
+const favoritesContainer = document.querySelector(".favorites-container");
 
 function setLink(link, value, prefix) {
   link.hidden = !value;
@@ -24,10 +21,12 @@ function openModal(user) {
   if (user.picture_large) {
     photo.setAttribute("src", user.picture_large);
     photo.setAttribute("alt", user.full_name);
-    photo.hidden = false;
   } else {
-    photo.hidden = true;
+    photo.setAttribute("src", "img/defaultimage.jpg");
+    photo.setAttribute("alt", user.full_name);
   }
+
+  photo.hidden = false;
 
   const name = modal.querySelector(".teacher-info-name");
   name.textContent = user.full_name;
@@ -65,19 +64,39 @@ function closeModal() {
   modal.classList.remove("is-open");
 }
 
-teachersProfile.addEventListener("click", function (event) {
-  const card = event.target.closest(".teacher-card");
-  if (!card) return;
+export function initModal(users, renderCallback, renderFavoritesCallback) {
+  function handleCardClick(event) {
+    const card = event.target.closest(".teacher-card");
+    if (!card) return;
 
-  const user = users.find((currentUser) => currentUser.id === card.dataset.id);
-  if (user) openModal(user);
-});
+    const user = users.find(
+      (currentUser) => currentUser.id === card.dataset.id,
+    );
+    if (user) openModal(user);
+  }
 
-modal.addEventListener("click", function (event) {
-  const closeButton = event.target.closest(".modal-close");
-  if (event.target === modal || closeButton) closeModal();
-});
+  teachersProfile.addEventListener("click", handleCardClick);
+  favoritesContainer.addEventListener("click", handleCardClick);
 
-document.addEventListener("keydown", function (event) {
-  if (event.key === "Escape") closeModal();
-});
+  modal.addEventListener("click", function (event) {
+    const closeButton = event.target.closest(".modal-close");
+    if (event.target === modal || closeButton) closeModal();
+  });
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") closeModal();
+  });
+
+  const starBtn = modal.querySelector(".teacher-info-star");
+  starBtn.addEventListener("click", function () {
+    const currentId = modal.dataset.id;
+    const user = users.find((u) => u.id === currentId);
+
+    if (user) {
+      user.favorite = !user.favorite;
+      starBtn.textContent = user.favorite ? "★" : "☆";
+      renderCallback(users);
+      renderFavoritesCallback(users);
+    }
+  });
+}
