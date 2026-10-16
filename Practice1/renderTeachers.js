@@ -1,11 +1,6 @@
-import { formatUsers } from "./JS-User-methods/FE4U-Lab2-mock.js";
-
-const users = formatUsers();
 const teacherProfileContainer = document.querySelector(
   ".teachers-profiles-container",
 );
-
-const TOP = 10;
 
 function getInitials(fullName) {
   const words = fullName.trim().split(" ");
@@ -66,8 +61,31 @@ function createTeacherCard(user) {
   return card;
 }
 
-function createTeachers(list, container) {
-  container.replaceChildren(...list.map(createTeacherCard));
+export function createTeachers(list) {
+  teacherProfileContainer.replaceChildren(...list.map(createTeacherCard));
 }
 
-createTeachers(users.slice(0, TOP), teacherProfileContainer);
+export function initRenderTeachers(users) {
+  createTeachers(users);
+  renderFavorites(users);
+}
+
+const favoriteContainer = document.querySelector(".favorites-container");
+
+export function renderFavorites(users) {
+  const favoriteUsers = users.filter((user) => user.favorite);
+  favoriteContainer.innerHTML = "";
+  favoriteContainer.style.justifyContent = "flex-start";
+
+  if (favoriteUsers.length === 0) {
+    const noFoundElement = document.createElement("p");
+    noFoundElement.textContent = "Немає улюблених вчителів";
+    favoriteContainer.style.justifyContent = "center";
+    favoriteContainer.append(noFoundElement);
+    return;
+  }
+
+  favoriteContainer.replaceChildren(
+    ...favoriteUsers.map((user) => createTeacherCard(user)),
+  );
+}

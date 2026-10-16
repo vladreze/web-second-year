@@ -54,29 +54,3 @@ export function validateUser(user) {
 
   return { valid: errors.length === 0, errors };
 }
-
-const validUser = {
-  full_name: "Anna Test",
-  gender: "Female",
-  note: "",
-  state: "Kyiv",
-  city: "Kyiv",
-  country: "Germany",
-  phone: "0079-8291509",
-  age: 25,
-  email: "anna@example.com",
-};
-
-console.log(validateUser(validUser)); // { valid: true, errors: [] }
-console.log(
-  validateUser({ ...validUser, age: "25", phone: "123", email: "abc" }).errors,
-); // [ 'phone', 'age', 'email' ]
-console.log(validateUser({ ...validUser, note: "hello" }).errors); // [ 'note' ]
-console.log(validateUser({ ...validUser, gender: "female" }).errors); // [ 'gender' ]
-console.log(
-  validateUser({
-    ...validUser,
-    country: "United States",
-    phone: "(720)-981-1014",
-  }).valid,
-); // true

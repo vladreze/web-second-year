@@ -29,9 +29,3 @@ export function findUser(users = allUsers, findParam = {}) {
 
   return foundUser ?? null;
 }
-
-console.log(findUser(allUsers, { full_name: "norbert" })?.full_name); // Norbert Weishaupt
-console.log(findUser(allUsers, { age: 65 })?.full_name); // Norbert Weishaupt
-console.log(findUser(allUsers, { note: "cats" })?.full_name); // Olivia Storm
-console.log(findUser(allUsers, { full_name: "Zzzz" })); // null
-console.log(findUser(allUsers, { city: "Madrid" })); // null

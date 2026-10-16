@@ -1897,7 +1897,7 @@ export const additionalUsers = [
     timezone: { offset: "+3:30", description: "Tehran" },
     email: "aaron.enoksen@example.com",
     id: "FN19068929566",
-    favorite: null,
+    favorite: true,
     course: null,
     bg_color: "#dface7",
     note: null,
@@ -1917,7 +1917,7 @@ export const additionalUsers = [
     b_day: "1946-06-02T09:26:02.733Z",
     id: "FN02064618043",
     picture_large: "https://randomuser.me/api/portraits/women/67.jpg",
-    favorite: false,
+    favorite: true,
     course: "chemistry",
     bg_color: "#dface7",
     note: "old lady with a cats",
@@ -2097,7 +2097,7 @@ function mergeAllUsers(mockUsers, extraUsers) {
 function fillRandomFields(users) {
   return users.map((currentUser) => ({
     ...currentUser,
-    favorite: currentUser.favorite ?? getRandomItem(favorites),
+    favorite: currentUser.favorite ?? false,
     course: currentUser.course ?? getRandomItem(courses),
     bg_color: currentUser.bg_color ?? getRandomItem(bg_colors),
   }));
@@ -2117,13 +2117,3 @@ export function formatUsers(
 
   return filledRandomFields;
 }
-
-const users = formatUsers();
-const norbert = users.find((u) => u.full_name === "Norbert Weishaupt");
-const olivia = users.find((u) => u.full_name === "Olivia Storm");
-
-console.log(users.length); // 52
-console.log(norbert.favorite, norbert.bg_color); // true "#1f75cb"
-console.log(olivia.course, "|", olivia.note); // Chemistry | old lady with a cats
-console.log(typeof norbert.postcode); // string
-console.log(users.every((u) => Object.values(u).every((v) => v !== undefined))); // true

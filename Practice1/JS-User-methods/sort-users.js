@@ -6,7 +6,7 @@ import {
 
 const allUsers = formatUsers(randomUserMock, additionalUsers);
 
-const sortableFields = ["full_name", "age", "b_date", "country"];
+const sortableFields = ["full_name", "age", "gender", "country", "course"];
 
 function hasValue(value) {
   return value !== null && value !== "" && value !== undefined;
@@ -33,19 +33,3 @@ export function sortUsers(users = allUsers, field, direction = "asc") {
     return compareValues(first, second, field) * order;
   });
 }
-
-console.log(
-  sortUsers(allUsers, "age")
-    .map((u) => u.age)
-    .slice(0, 3),
-); // [ 24, 26, 27 ]
-console.log(
-  sortUsers(allUsers, "age", "desc")
-    .map((u) => u.age)
-    .slice(0, 3),
-); // [ 80, 75, 73 ]
-console.log(sortUsers(allUsers, "age").at(-1).full_name); // Aaron Enokse
-console.log(sortUsers(allUsers, "country")[0].country); // Australia
-console.log(
-  sortUsers(allUsers, "favorite")[0].full_name === allUsers[0].full_name,
-); // true
