@@ -1,3 +1,5 @@
+import { fetchUsers } from "./api.js";
+
 import { formatUsers } from "./JS-User-methods/FE4U-Lab2-mock.js";
 import {
   initRenderTeachers,
@@ -10,13 +12,19 @@ import { initStaticticsTable } from "./statistics.js";
 import { searchUser } from "./search.js";
 import { initAddTeacher } from "./addTeacher.js";
 
-let users = formatUsers();
+let users = [];
 
-initRenderTeachers(users);
-initModal(users, createTeachers, renderFavorites);
-initStaticticsTable(users);
-searchUser(users);
-initAddTeacher(users, createTeachers);
+async function startUp() {
+  const fetchedUsers = await fetchUsers();
+  users = fetchedUsers;
+  initRenderTeachers(users);
+  initModal(users, createTeachers, renderFavorites);
+  initStaticticsTable(users);
+  searchUser(users);
+  initAddTeacher(users, createTeachers);
+}
+
+startUp();
 
 const form = document.querySelector(".top-teachers-form-container");
 form.addEventListener("change", () => {
@@ -30,4 +38,14 @@ form.addEventListener("change", () => {
 
   const filteredUsers = filterUsers(users, filters);
   createTeachers(filteredUsers);
+});
+
+const loadMoreBtn = document.querySelector("#load-more-teachers");
+loadMoreBtn.addEventListener("click", async () => {
+  loadMoreBtn.textContent = "Loading...";
+  const newUsers = await fetchUsers(10);
+  users = users.concat(newUsers);
+  createTeachers(users);
+  initStaticticsTable(users);
+  loadMoreBtn.textContent = "Load more";
 });

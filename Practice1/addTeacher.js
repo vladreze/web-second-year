@@ -1,7 +1,7 @@
 import { validateUser } from "./JS-User-methods/validate-users.js";
 
 const modalAddTeacher = document.querySelector("#modal-add-teacher");
-const addTeacherBtns = document.querySelectorAll(".add-teacher-btn");
+const addTeacherBtns = document.querySelectorAll("#add-btn");
 const form = document.querySelector(".modal-form");
 
 function openModal() {
