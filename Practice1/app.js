@@ -1,6 +1,4 @@
 import { fetchUsers } from "./api.js";
-
-import { formatUsers } from "./JS-User-methods/FE4U-Lab2-mock.js";
 import {
   initRenderTeachers,
   createTeachers,

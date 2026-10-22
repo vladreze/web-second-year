@@ -43,7 +43,17 @@ export async function fetchUsers(count = 10) {
       };
     });
 
-    return formattedUsers;
+    let dbUsers = [];
+    try {
+      const getUsersFromDBResponse = await fetch(
+        "http://localhost:3000/teachers",
+      );
+      dbUsers = await getUsersFromDBResponse.json();
+    } catch (error) {
+      console.log("Не вдалося доступитися до локальної db ", error);
+    }
+
+    return [...formattedUsers, ...dbUsers];
   } catch (error) {
     console.error("Помилка при завантажені", error);
     return [];

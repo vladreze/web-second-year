@@ -1,0 +1,39 @@
+{
+  "teachers": [
+    {
+      "id": "djZy4Ct6oqw",
+      "full_name": "Vlad",
+      "course": "Mathematics",
+      "country": "Ukraine",
+      "city": "Kyiv",
+      "state": "Kyiv",
+      "email": "sdfsdf@gmail.com",
+      "phone": "+38099999999",
+      "b_date": "1993-06-16",
+      "age": 33,
+      "gender": "Male",
+      "bg_color": "#8d5e5e",
+      "note": "",
+      "favorite": false,
+      "picture_large": null
+    },
+    {
+      "id": "dcvUmDIvyx0",
+      "full_name": "Vlad",
+      "course": "Mathematics",
+      "country": "Ukraine",
+      "city": "Kyiv",
+      "state": "Kyiv",
+      "email": "sdfsdf@gmail.com",
+      "phone": "+38099999999",
+      "b_date": "2001-05-10",
+      "age": 25,
+      "gender": "Male",
+      "bg_color": "#664242",
+      "note": "",
+      "favorite": false,
+      "picture_large": null
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

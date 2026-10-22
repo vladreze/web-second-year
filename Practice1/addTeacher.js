@@ -38,7 +38,7 @@ export function initAddTeacher(users, render) {
     if (event.key === "Escape") closeModal();
   });
 
-  form.addEventListener("submit", (event) => {
+  form.addEventListener("submit", async (event) => {
     event.preventDefault();
 
     const inputName = form.querySelector('input[name="name"]').value.trim();
@@ -82,12 +82,25 @@ export function initAddTeacher(users, render) {
       return;
     }
 
-    users.unshift(newUser);
-    render(users);
+    try {
+      const bodyOptions = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newUser),
+      };
 
-    closeModal();
-    form.reset();
+      await fetch("http://localhost:3000/teachers", bodyOptions);
+      users.unshift(newUser);
+      render(users);
 
-    alert(`Користувача ${newUser.full_name} успішно додано!`);
+      closeModal();
+      form.reset();
+      alert(`Користувача ${newUser.full_name} успішно додано!`);
+    } catch (error) {
+      alert("помилка звʼязку із локальним сервером");
+      console.error(error);
+    }
   });
 }
