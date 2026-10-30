@@ -18,17 +18,15 @@ const phonePatterns = {
 
 function stringValidation(value) {
   return (
-    typeof value === "string" &&
-    value.length > 0 &&
+    _.isString(value) &&
+    !_.isEmpty(_.trim(value)) &&
     value.charAt(0) === value.charAt(0).toUpperCase()
   );
 }
 
 function phoneValidation(phone, country) {
-  if (typeof phone !== "string") return false;
-
+  if (!_.isString(phone)) return false;
   const pattern = phonePatterns[country];
-
   return pattern ? pattern.test(phone) : /^[\d\s()+-]{6,}$/.test(phone);
 }
 
@@ -37,20 +35,15 @@ export function validateUser(user) {
 
   if (!stringValidation(user.full_name)) errors.push("full_name");
   if (!stringValidation(user.gender)) errors.push("gender");
-  if (
-    typeof user.note !== "string" ||
-    (user.note !== "" && !stringValidation(user.note))
-  )
+  if (!_.isNil(user.note) && user.note !== "" && !stringValidation(user.note))
     errors.push("note");
   if (!stringValidation(user.state)) errors.push("state");
   if (!stringValidation(user.city)) errors.push("city");
   if (!stringValidation(user.country)) errors.push("country");
   if (!phoneValidation(user.phone, user.country)) errors.push("phone");
-
-  if (typeof user.age !== "number" || user.age < 1 || Number.isNaN(user.age))
+  if (!_.isNumber(user.age) || _.isNaN(user.age) || user.age < 1)
     errors.push("age");
-  if (typeof user.email !== "string" || !user.email.includes("@"))
+  if (!_.isString(user.email) || !_.includes(user.email, "@"))
     errors.push("email");
-
-  return { valid: errors.length === 0, errors };
+  return { valid: _.isEmpty(errors), errors };
 }

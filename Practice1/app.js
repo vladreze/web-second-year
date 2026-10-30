@@ -42,7 +42,7 @@ const loadMoreBtn = document.querySelector("#load-more-teachers");
 loadMoreBtn.addEventListener("click", async () => {
   loadMoreBtn.textContent = "Loading...";
   const newUsers = await fetchUsers(10);
-  users = users.concat(newUsers);
+  users.push(...newUsers);
   createTeachers(users);
   initStaticticsTable(users);
   loadMoreBtn.textContent = "Load more";
