@@ -3,12 +3,35 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
+
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+
+    <link href="https://cdn.webdatarocks.com/latest/webdatarocks.min.css" rel="stylesheet"/>
+    <script src="https://cdn.webdatarocks.com/latest/webdatarocks.toolbar.min.js"></script>
+    <script src="https://cdn.webdatarocks.com/latest/webdatarocks.js"></script>
 
     <link rel="stylesheet" href="style.css" />
     <script type="module" src="app.js"></script>
@@ -113,100 +136,28 @@
       </section>
       <section class="statistics-section" id="statistics">
         <h2 class="section-title">Statistics</h2>
-
         <div class="statistics-table-container">
-          <table class="data-table">
-            <thead>
-              <tr>
-                <th scope="col" data-sort="full_name">Name</th>
-                <th scope="col" data-sort="course">Speciality</th>
-                <th scope="col" data-sort="age">Age</th>
-                <th scope="col" data-sort="gender">Gender</th>
-                <th scope="col" data-sort="country">Nationality</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Daisy Alexander</td>
-                <td>Chemistry</td>
-                <td>28</td>
-                <td>Female</td>
-                <td>Vietnam</td>
-              </tr>
-              <tr>
-                <td>Julia Bradley</td>
-                <td>Math</td>
-                <td>26</td>
-                <td>Female</td>
-                <td>USA</td>
-              </tr>
-              <tr>
-                <td>Rita Hart</td>
-                <td>Art</td>
-                <td>41</td>
-                <td>Female</td>
-                <td>Ireland</td>
-              </tr>
-              <tr>
-                <td>Jonathan Jacobs</td>
-                <td>Math</td>
-                <td>32</td>
-                <td>Male</td>
-                <td>England</td>
-              </tr>
-              <tr>
-                <td>Nathaniel White</td>
-                <td>Computer Science</td>
-                <td>37</td>
-                <td>Male</td>
-                <td>Austria</td>
-              </tr>
-              <tr>
-                <td>Frank Medina</td>
-                <td>English</td>
-                <td>43</td>
-                <td>Male</td>
-                <td>Italy</td>
-              </tr>
-              <tr>
-                <td>Ella Curtis</td>
-                <td>Chess</td>
-                <td>34</td>
-                <td>Female</td>
-                <td>USA</td>
-              </tr>
-              <tr>
-                <td>Claire Simmmons</td>
-                <td>Art</td>
-                <td>38</td>
-                <td>Female</td>
-                <td>Netherlands</td>
-              </tr>
-              <tr>
-                <td>Benjamin Knight</td>
-                <td>Biology</td>
-                <td>44</td>
-                <td>Male</td>
-                <td>Scotland</td>
-              </tr>
-              <tr>
-                <td>Norma Rose</td>
-                <td>Statistics</td>
-                <td>36</td>
-                <td>Female</td>
-                <td>France</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <div class="canvas-statistics-container">
 
-        <!--      <div class="page-selection-container">
-          <span class="page-selection-item">1</span>
-          <a href="#" class="page-selection-item">2</a>
-          <a href="#" class="page-selection-item">3</a>
-          <span class="page-selection-item">...</span>
-          <a href="#" class="page-selection-item">Last</a>
-        </div>-->
+          <div class="chart-wrapper">
+            <canvas id="statistics-canvas-gender"></canvas>
+          </div>
+
+          <div class="chart-wrapper">
+            <canvas id="statistics-canvas-subject"></canvas>
+          </div>
+
+          <div class="chart-wrapper">
+            <canvas id="statistics-canvas-country"></canvas>
+          </div>
+          <div class="chart-wrapper">
+            <canvas id="statistics-canvas-age"></canvas>
+          </div>
+          
+        </div>  
+      <div class="statistics-table-container">
+           <div id="wdr-component"></div>
+        </div>
       </section>
 
       <section class="favorites-section" id="favorites">
@@ -383,43 +334,29 @@
         <div class="modal-teacher-body">
           <div class="teacher-info-top">
             <div class="teacher-info-photo-wrapper">
-              <img
-                src="img/manThree.jpg"
-                alt="Ihor Tkachuk"
-                class="teacher-info-photo"
-              />
+              <img class="teacher-info-photo" />
             </div>
 
             <div class="teacher-info-details">
               <div class="teacher-info-title-row">
-                <h3 class="teacher-info-name">Ihor Tkachuk</h3>
+                <h3 class="teacher-info-name"></h3>
                 <button type="button" class="teacher-info-star">&#9734;</button>
               </div>
 
-              <p class="teacher-info-subject">Chemistry</p>
-              <p class="teacher-info-location">Kyiv, Ukraine</p>
-              <p class="teacher-info-meta">35, Male</p>
+              <p class="teacher-info-subject"></p>
+              <p class="teacher-info-location"></p>
+              <p class="teacher-info-meta"></p>
+              <p class="teacher-info-days-to-the-birthday"></p>
 
-              <a href="mailto:ihor_tkachuk@domain.com" class="teacher-info-link"
-                >ihor_tkachuk@domain.com</a
-              >
-              <a href="tel:+380964993252" class="teacher-info-phone"
-                >+380964993252</a
-              >
+              <a class="teacher-info-link"></a>
+              <a class="teacher-info-phone"></a>
             </div>
           </div>
 
           <div class="teacher-info-bottom">
-            <p class="teacher-info-bio">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab autem
-              consectetur culpa cumque, distinctio dolor dolore dolorem
-              doloremque ea explicabo facilis nam nesciunt nisi pariatur
-              perspiciatis porro quis similique temporibus veniam veritatis? A
-              ab ad, aliquam amet consequatur cupiditate debitis deserunt
-              doloribus dolorum earum eius eos minus nostrum odit omnis
-              perferendis...
-            </p>
-            <a href="#" class="teacher-info-map-link">toggle map</a>
+            <p class="teacher-info-bio"></p>
+            <!-- <a href="#" class="teacher-info-map-link">toggle map</a> -->
+            <div id="teacher-map" class="teacher-map"></div>
           </div>
         </div>
       </div>

@@ -14,7 +14,17 @@ function capitalize(text) {
   return text ? text.charAt(0).toUpperCase() + text.slice(1) : "";
 }
 
+function countDaysUntilBDay(birthDate) {
+  const today = dayjs();
+  const dob = dayjs(birthDate);
+  let nextBday = dob.year(today.year());
+  if (nextBday.isBefore(today, "day")) nextBday = nextBday.add(1, "year");
+  return nextBday.diff(today, "day");
+}
+
 const modal = document.querySelector("#modal-teacher-info");
+
+let map = null;
 
 function openModal(user) {
   const photo = modal.querySelector(".teacher-info-photo");
@@ -47,6 +57,15 @@ function openModal(user) {
     .filter(Boolean)
     .join(", ");
 
+  const dayToTheBirthday = modal.querySelector(
+    ".teacher-info-days-to-the-birthday",
+  );
+
+  const dayText = countDaysUntilBDay(user.b_date) > 1 ? "days" : "day";
+
+  dayToTheBirthday.textContent =
+    "Days to the birthday: " + countDaysUntilBDay(user.b_date) + " " + dayText;
+
   const email = modal.querySelector(".teacher-info-link");
   setLink(email, user.email, "mailto:");
 
@@ -58,6 +77,28 @@ function openModal(user) {
 
   modal.dataset.id = user.id;
   modal.classList.add("is-open");
+
+  const lat = user.latitude;
+  const lng = user.longitude;
+
+  if (!map) {
+    map = L.map("teacher-map").setView([lat, lng], 5);
+    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 19,
+      attribution:
+        '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    }).addTo(map);
+  } else {
+    map.setView([lat, lng], 5);
+  }
+
+  map.eachLayer((layer) => {
+    if (layer instanceof L.Marker) {
+      layer.remove();
+    }
+  });
+
+  L.marker([lat, lng]).addTo(map);
 }
 
 function closeModal() {

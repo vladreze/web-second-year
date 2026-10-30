@@ -11,16 +11,16 @@ const searchableFields = ["full_name", "note", "age"];
 export function findUser(users = allUsers, findParam = {}) {
   const [field, value] = Object.entries(findParam)[0] ?? [];
 
-  if (!searchableFields.includes(field)) return null;
-  if (value === undefined || value === "") return null;
+  if (!_.includes(searchableFields, field)) return null;
+  if (_.isNil(value) || value === "") return null;
 
-  const foundUser = users.find((user) => {
-    const userValue = user[field];
+  const foundUser = _.find(users, (user) => {
+    const userValue = _.get(user, field);
 
-    if (typeof value === "string") {
+    if (_.isString(value)) {
       return (
-        typeof userValue === "string" &&
-        userValue.toLowerCase().includes(value.toLowerCase())
+        _.isString(userValue) &&
+        _.includes(_.toLower(userValue), _.toLower(value))
       );
     }
 

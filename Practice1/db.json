@@ -33,6 +33,23 @@
       "note": "",
       "favorite": false,
       "picture_large": null
+    },
+    {
+      "id": "cP9Qjlp4xFo",
+      "full_name": "Dfssfsdf",
+      "course": "Mathematics",
+      "country": "Ukraine",
+      "city": "Kyiv",
+      "state": "Kyiv",
+      "email": "sdfsdf@gmail.com",
+      "phone": "+38099999999",
+      "b_date": "2007-12-04",
+      "age": 18,
+      "gender": "Male",
+      "bg_color": "#ab5454",
+      "note": "",
+      "favorite": false,
+      "picture_large": null
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

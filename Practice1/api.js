@@ -18,6 +18,8 @@ function getRandomSubject() {
   return courses[randomIndex];
 }
 
+let dbIsImplemented = false;
+
 export async function fetchUsers(count = 10) {
   try {
     const getUsersResponse = await fetch(
@@ -25,7 +27,7 @@ export async function fetchUsers(count = 10) {
     );
     const data = await getUsersResponse.json();
 
-    const formattedUsers = data.results.map((user) => {
+    const formattedUsers = _.map(data.results, (user) => {
       return {
         id: user.login.uuid,
         full_name: `${user.name.first} ${user.name.last}`,
@@ -34,6 +36,8 @@ export async function fetchUsers(count = 10) {
         b_date: user.dob.date,
         city: user.location.city,
         country: user.location.country,
+        latitude: user.location.coordinates.latitude,
+        longitude: user.location.coordinates.longitude,
         email: user.email,
         phone: user.phone,
         picture_large: user.picture.large,
@@ -43,17 +47,22 @@ export async function fetchUsers(count = 10) {
       };
     });
 
-    let dbUsers = [];
-    try {
-      const getUsersFromDBResponse = await fetch(
-        "http://localhost:3000/teachers",
-      );
-      dbUsers = await getUsersFromDBResponse.json();
-    } catch (error) {
-      console.log("Не вдалося доступитися до локальної db ", error);
-    }
+    if (!dbIsImplemented) {
+      dbIsImplemented = true;
+      let dbUsers = [];
+      try {
+        const getUsersFromDBResponse = await fetch(
+          "http://localhost:3000/teachers",
+        );
+        dbUsers = await getUsersFromDBResponse.json();
+      } catch (error) {
+        console.log("Не вдалося доступитися до локальної db ", error);
+      }
 
-    return [...formattedUsers, ...dbUsers];
+      return [...formattedUsers, ...dbUsers];
+    } else {
+      return [...formattedUsers];
+    }
   } catch (error) {
     console.error("Помилка при завантажені", error);
     return [];
